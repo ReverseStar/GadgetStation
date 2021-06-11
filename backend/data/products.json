@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Product-1",
+        "price" : "50",
+        "description": "blah blah blah...",
+        "ratings":  4.5,
+        "images": [{
+            "public_id": "products/dummy1",
+            "url": "https://res.cloudinary.com"
+        }],
+        "category": "Electronics",
+        "seller" : "Amazon",
+        "stock": 50,
+        "numofReviwes": 32,
+        "reviews": []
+    },
+    {
+        "name": "Product-2",
+        "price" : "50",
+        "description": "blah blah blah...",
+        "ratings":  4.5,
+        "images": [{
+            "public_id": "products/dummy1",
+            "url": "https://res.cloudinary.com"
+        }],
+        "category": "Electronics",
+        "seller" : "Amazon",
+        "stock": 50,
+        "numofReviwes": 32,
+        "reviews": []
+    },
+    {
+        "name": "Product-3",
+        "price" : "50",
+        "description": "blah blah blah...",
+        "ratings":  4.5,
+        "images": [{
+            "public_id": "products/dummy1",
+            "url": "https://res.cloudinary.com"
+        }],
+        "category": "Electronics",
+        "seller" : "Amazon",
+        "stock": 50,
+        "numofReviwes": 32,
+        "reviews": []
+    }
+]
