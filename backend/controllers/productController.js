@@ -17,6 +17,9 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
 //Get all products
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
+    
+    // return next(new ErrorHandler('My Error', 400))
+
     const resPerPage = 8
     const productsCount = await Product.countDocuments()
 
