@@ -26,9 +26,9 @@ const ProductDetails = ({ match }) => {
 
     return (
         <Fragment>
-
             {loading ? <Loader /> : (
                 <Fragment>
+                    <MetaData title={product.name} />
                     <div className="row f-flex justify-content-around">
                         <div className="col-12 col-lg-5 img-fluid" id="product_image">
                             <Carousel pause='hover'>
@@ -73,7 +73,7 @@ const ProductDetails = ({ match }) => {
                             <h4 className="mt-2">Description:</h4>
                             <p>{product.description}</p>
                             <hr />
-                            <p id="product_seller mb-3">Sold by: <strong>{product.seller}</strong></p>
+                            <p id="product_seller mb-3">Seller: <strong>{product.seller}</strong></p>
 
                             <button id="review_btn" type="button" className="btn btn-primary mt-4" data-toggle="modal" data-target="#ratingModal">
                                 Submit Your Review
