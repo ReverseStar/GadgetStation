@@ -17,19 +17,28 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
 //Get all products
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-    
+
     // return next(new ErrorHandler('My Error', 400))
 
     const resPerPage = 2
     const productsCount = await Product.countDocuments()
 
-    const apiFeatures = new APIFeatures(Product.find(), req.query).search().filter().pagination(resPerPage)
-    const products = await apiFeatures.query
+    const apiFeatures = new APIFeatures(Product.find(), req.query)
+        .search()
+        .filter()
+        
+    let products = await apiFeatures.query
+    let filteredProductsCount = products.length
+    apiFeatures.pagination(resPerPage)
+
+
+    products = await apiFeatures.query
 
     res.status(201).json({
         success: true,
         productsCount,
         resPerPage,
+        filteredProductsCount,
         products
     })
 })
@@ -81,8 +90,8 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
 //Creating Product Reviews
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
-    
-    const {rating, comment, productId} = req.body
+
+    const { rating, comment, productId } = req.body
     const review = {
         user: req.user._id,
         name: req.user.name,
@@ -96,22 +105,22 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
         r => r.user.toString() === req.user._id.toString()
     )
 
-    if(isReviewed) {
+    if (isReviewed) {
         product.reviews.forEach(review => {
-            if(review.user.toString() === req.user._id.toString()) {
+            if (review.user.toString() === req.user._id.toString()) {
                 review.comment = comment;
                 review.rating = rating;
             }
         })
     }
-    else{
+    else {
         product.reviews.push(review)
         product.numOfReviews = product.reviews.length
     }
 
-    product.ratings = product.reviews.reduce((acc,item) => item.rating + acc, 0) / product.reviews.length
+    product.ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length
 
-    await product.save({validateBeforeSave:false})
+    await product.save({ validateBeforeSave: false })
 
     res.status(200).json({
         success: true
@@ -136,16 +145,16 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
 
     const numOfReviews = reviews.length
 
-    const ratings = product.reviews.reduce((acc,item) => item.rating + acc, 0) / reviews.length
+    const ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / reviews.length
 
-    await Product.findByIdAndUpdate(req.query.productId,{
+    await Product.findByIdAndUpdate(req.query.productId, {
         reviews,
         ratings,
         numOfReviews
-    },{
+    }, {
         new: true,
         runValidators: true,
-        useFindAndModify:false
+        useFindAndModify: false
     })
 
     res.status(200).json({

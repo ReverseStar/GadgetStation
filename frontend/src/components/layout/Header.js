@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
-import '../../App.css'
+import { Link, Route } from 'react-router-dom'
 import Search from './Search'
-import { Route, Link} from 'react-router-dom'
+import '../../App.css'
 
 const Header = () => {
     return (
@@ -10,7 +10,7 @@ const Header = () => {
                 <div class="col-12 col-md-3">
                     <div class="navbar-brand">
                         <Link to="/">
-                            <img src="./images/logo2.png" />
+                            <img src="/images/logo2.png" />
                         </Link>
                     </div>
                 </div>
