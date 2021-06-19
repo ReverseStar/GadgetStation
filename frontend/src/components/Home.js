@@ -42,7 +42,7 @@ const Home = ({ match }) => {
     const alert = useAlert()
     const dispatch = useDispatch()
 
-    const { loading, products, error, productsCount, resPerPage,filteredProductsCount } = useSelector(state => state.products)
+    const { loading, products, error, productsCount, resPerPage, filteredProductsCount } = useSelector(state => state.products)
 
     const keyword = match.params.keyword
 
@@ -61,11 +61,11 @@ const Home = ({ match }) => {
     }
 
     let count = productsCount
-    if(keyword){
+    if (keyword) {
         count = filteredProductsCount
     }
 
-
+    console.log(products)
     return (
         <Fragment>
             {loading ? <Loader /> : (
@@ -97,8 +97,8 @@ const Home = ({ match }) => {
                                                 onChange={price => setPrice(price)}
                                             />
 
-                                            <hr className="my-5"/>
-                                            
+                                            <hr className="my-5" />
+
                                             <div className="mt-5">
                                                 <h4 className="mb-3">
                                                     Categories
@@ -107,9 +107,10 @@ const Home = ({ match }) => {
                                                 <ul className="pl-0">
                                                     {categories.map(category => (
                                                         <li
-                                                            style = {{cursor: 'pointer', listStyleType: 'none'
-                                                        }}
-                                                            key = {category}
+                                                            style={{
+                                                                cursor: 'pointer', listStyleType: 'none'
+                                                            }}
+                                                            key={category}
                                                             onClick={() => setCategory(category)}
                                                         >
                                                             {category}
@@ -117,36 +118,35 @@ const Home = ({ match }) => {
                                                     ))}
                                                 </ul>
                                             </div>
-                                            {/* fknf3jtro34jto4jo4 */}
-                                            <hr className="my-3"/>
-                                            
+
+                                            <hr className="my-3" />
+
                                             <div className="mt-5">
                                                 <h4 className="mb-3">
                                                     Ratings
                                                 </h4>
 
                                                 <ul className="pl-0">
-                                                    {[5,4,3,2,1].map(star => (
+                                                    {[5, 4, 3, 2, 1].map(star => (
                                                         <li
-                                                            style = {{cursor: 'pointer', listStyleType: 'none'
-                                                        }}
-                                                            key = {star}
+                                                            style={{
+                                                                cursor: 'pointer', listStyleType: 'none'
+                                                            }}
+                                                            key={star}
                                                             onClick={() => setRating(star)}
                                                         >
                                                             <div className="rating-outer">
                                                                 <div className="rating-inner"
-                                                                    style = {{
+                                                                    style={{
                                                                         width: `${star * 20}%`
                                                                     }}
                                                                 >
-                                                                    
                                                                 </div>
                                                             </div>
                                                         </li>
                                                     ))}
                                                 </ul>
                                             </div>
-
                                         </div>
                                     </div>
 
@@ -157,13 +157,13 @@ const Home = ({ match }) => {
                                             ))}
                                         </div>
                                     </div>
+
                                 </Fragment>
                             ) : (
                                 products.map(product => (
                                     <Product key={product._id} product={product} col={3} />
                                 ))
                             )}
-
                         </div>
                     </section>
 

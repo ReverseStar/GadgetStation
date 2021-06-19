@@ -24,8 +24,7 @@ class APIFeatures {
 
         //Adding filter for Price and Ratings
         let queryStr = JSON.stringify(queryCopy)
-        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
-
+        queryStr = queryStr.replace(/\b(lt|lte|gt|gte)\b/g, match => `$${match}`)
         this.query = this.query.find(JSON.parse(queryStr))
         return this
     }
