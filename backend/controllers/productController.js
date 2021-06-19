@@ -116,7 +116,7 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
     }
     else {
         product.reviews.push(review)
-        product.numOfReviews = product.reviews.length
+        product.numofReviews = product.reviews.length
     }
 
     product.ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length
@@ -144,14 +144,14 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
 
     const reviews = product.reviews.filter(review => review._id.toString() !== req.query.id.toString())
 
-    const numOfReviews = reviews.length
+    const numofReviews = reviews.length
 
     const ratings = product.reviews.reduce((acc, item) => item.rating + acc, 0) / reviews.length
 
     await Product.findByIdAndUpdate(req.query.productId, {
         reviews,
         ratings,
-        numOfReviews
+        numofReviews
     }, {
         new: true,
         runValidators: true,
