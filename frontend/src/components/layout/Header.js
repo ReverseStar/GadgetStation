@@ -6,24 +6,25 @@ import '../../App.css'
 const Header = () => {
     return (
         <Fragment>
-            <nav class="navbar row">
-                <div class="col-12 col-md-3">
-                    <div class="navbar-brand">
+            <nav className="navbar row">
+                <div className="col-12 col-md-3">
+                    <div className="navbar-brand">
                         <Link to="/">
                             <img src="/images/logo2.png" />
                         </Link>
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6 mt-2 mt-md-0">
+                <div className="col-12 col-md-6 mt-2 mt-md-0">
                     <Route render={({ history }) => <Search history={history} />} />
                 </div>
 
-                <div class="col-12 col-md-3 mt-4 mt-md-0 text-center">
-                    <button class="btn" id="login_btn">Login</button>
+                <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+                    <Link to="/login" className="btn ml-4" id="login_btn">Login
+                    </Link>
 
-                    <span id="cart" class="ml-3">Cart</span>
-                    <span class="ml-1" id="cart_count">0</span>
+                    <span id="cart" className="ml-3">Cart</span>
+                    <span className="ml-1" id="cart_count">0</span>
                 </div>
             </nav>
         </Fragment>
