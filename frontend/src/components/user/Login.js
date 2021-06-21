@@ -7,13 +7,13 @@ import MetaData from '../layout/MetaData'
 import { login, clearErrors } from '../../actions/userActions'
 
 const Login = ({ history }) => {
-    const { isAuthenticated, error, loading } = useSelector(state => state.auth)
-
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const alert = useAlert();
     const dispatch = useDispatch()
-
+    
+    const { isAuthenticated, error, loading } = useSelector(state => state.auth)
     useEffect(() => {
         if (isAuthenticated) {
             history.push('/')
