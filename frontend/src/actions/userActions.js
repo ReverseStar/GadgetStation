@@ -25,7 +25,7 @@ export const login = (email, password) => async (dispatch) => {
 
         const config = {
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json'
             }
         }
         
@@ -51,7 +51,7 @@ export const register = (userData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'content-type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
         }
         
@@ -98,7 +98,7 @@ export const updateProfile = (userData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'content-type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
         }
         
@@ -106,7 +106,7 @@ export const updateProfile = (userData) => async (dispatch) => {
         
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
-            payload: data.user
+            payload: data.success
         })
 
     } catch (error) {
