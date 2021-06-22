@@ -15,6 +15,7 @@ const Login = ({ history }) => {
     
     const { isAuthenticated, error, loading } = useSelector(state => state.auth)
     useEffect(() => {
+        //console.log('useEffect called', error)
         if (isAuthenticated) {
             history.push('/')
         }

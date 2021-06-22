@@ -17,7 +17,7 @@ const NewPassword = ({ history, match }) => {
     const { error, success } = useSelector(state => state.forgotPassword)
 
     useEffect(() => {
-
+        console.log('new pass', error) 
         if (error) {
             alert.error(error);
             dispatch(clearErrors());

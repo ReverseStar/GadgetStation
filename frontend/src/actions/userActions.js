@@ -55,9 +55,10 @@ export const login = (email, password) => async (dispatch) => {
         })
 
     } catch (error) {
+        //console.log(error.response.data)
         dispatch({
             type: LOGIN_FAIL,
-            payload: error.response.data.message
+            payload: error.response.data.errMessage
         })
     }
 }
@@ -83,7 +84,7 @@ export const register = (userData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: REGISTER_USER_FAIL,
-            payload: error.response.data.message
+            payload: error.response.data.message,
         })
     }
 }
@@ -104,7 +105,7 @@ export const loadUser = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LOAD_USER_FAIL,
-            payload: error.response.data.message
+            payload: error.response.data.errMessage
         })
     }
 }
@@ -130,7 +131,7 @@ export const updateProfile = (userData) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: UPDATE_PROFILE_FAIL,
-            payload: error.response.data.message
+            payload: error.response.data.errMessage
         })
     }
 }
@@ -154,6 +155,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
         })
 
     } catch (error) {
+        //console.log(error.response.data)
         dispatch({
             type: UPDATE_PASSWORD_FAIL,
             payload: error.response.data.message
@@ -208,7 +210,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: NEW_PASSWORD_FAIL,
-            payload: error.response.data.message
+            payload: error.response.data.errMessage
         })
     }
 }
@@ -231,8 +233,6 @@ export const logout = () => async (dispatch) => {
         })
     }
 }
-
-
 
 //Clear Errors
 export const clearErrors = () => async(dispatch) => {
