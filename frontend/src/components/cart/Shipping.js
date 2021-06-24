@@ -8,6 +8,7 @@ import { getProductDetails, clearErrors } from '../../actions/productActions'
 import { Carousel } from 'react-bootstrap'
 import { saveShippingInfo } from '../../actions/cartActions'
 import { countries } from 'countries-list'
+import CheckoutSteps from './CheckoutSteps'
 
 const Shipping = ({ history }) => {
 
@@ -33,6 +34,8 @@ const Shipping = ({ history }) => {
     return (
         <Fragment>
             <MetaData title={'Shipping Information'} />
+
+            <CheckoutSteps shipping />
 
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
