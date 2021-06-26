@@ -1,12 +1,14 @@
 import React, { Fragment, useEffect } from 'react'
+
 import MetaData from '../layout/MetaData'
+import CheckoutSteps from './CheckoutSteps'
+
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import CheckoutSteps from './CheckoutSteps'
-import { loadStripe } from '@stripe/stripe-js';
-import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
-import axios from 'axios'
 
+import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
+
+import axios from 'axios'
 
 const options = {
     style: {
@@ -29,7 +31,7 @@ const Payment = ({ history }) => {
     const { cartItems, shippingInfo } = useSelector(state => state.cart)
 
     useEffect(() => {
-
+        
     }, [])
 
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))
@@ -86,6 +88,7 @@ const Payment = ({ history }) => {
     return (
         <Fragment>
             <MetaData title={'Payment'} />
+
             <CheckoutSteps shipping confirmOrder payment />
 
             <div className="row wrapper">
@@ -134,6 +137,7 @@ const Payment = ({ history }) => {
                     </form>
                 </div>
             </div>
+
         </Fragment>
     )
 }
