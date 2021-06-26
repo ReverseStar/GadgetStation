@@ -1,4 +1,4 @@
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Header from './components/layout/Header'
@@ -17,8 +17,12 @@ import ForgotPassword from './components/user/ForgotPassword'
 import NewPassword from './components/user/NewPassword'
 import Cart from './components/cart/Cart'
 import Shipping from './components/cart/Shipping'
-import ConfirmOrder from './components/cart/ConfirmOrder'  
+import ConfirmOrder from './components/cart/ConfirmOrder'
 import axios from 'axios'
+import Payment from './components/cart/Payment'
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
+
 
 
 function App() {
@@ -51,12 +55,21 @@ function App() {
           <ProtectedRoute path="/me" component={Profile} exact />
           <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
           <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
-          <Route path="/password/forgot" component={ForgotPassword}  exact />
+          <Route path="/password/forgot" component={ForgotPassword} exact />
           <Route path="/password/reset/:token" component={NewPassword} exact />
           <Route path="/cart" component={Cart} exact />
-          <ProtectedRoute path="/shipping" component={Shipping}  />
+          <ProtectedRoute path="/shipping" component={Shipping} />
           <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
+
+
+
+          {stripeApiKey &&
+            <Elements stripe={loadStripe(stripeApiKey)}>
+              <ProtectedRoute path="/payment" component={Payment} />
+            </Elements>
+          }
         </div>
+
         <Footer />
       </div>
     </Router>
