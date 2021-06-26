@@ -34,8 +34,9 @@ const Payment = ({ history }) => {
 
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))
     const paymentData = {
-        amount: Math.round(orderInfo.amount * 100)
+        amount: Math.round(orderInfo.totalPrice * 100)
     }
+
     const submitHandler = async (e) => {
         e.preventDefault()
 
@@ -65,7 +66,7 @@ const Payment = ({ history }) => {
             })
 
             if (result.error) {
-                alert.error(result.error.message)
+                // alert.error(result.error.errMessage)
                 document.querySelector('#pay_btn').disabled = false
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
@@ -78,7 +79,7 @@ const Payment = ({ history }) => {
 
         } catch (error) {
             document.querySelector('#pay_btn').disabled = false
-            alert.error(error.response.data.message)
+            alert.error("Something went wrong!")
             // console.log(error.response.data);
         }
     }
