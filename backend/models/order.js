@@ -23,36 +23,37 @@ const orderSchema = mongoose.Schema({
             required: true
         }
     },
-    user:{
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User',
     },
-    orderItems:[
+    orderItems: [
         {
-            name:{
+            name: {
                 type: String,
                 required: true
             },
-            quantity:{
+            quantity: {
                 type: Number,
                 required: true
             },
-            image:{
+            image: {
                 type: String,
                 required: true
             },
-            price:{
+            price: {
                 type: Number,
                 required: true
             },
-            product:{
+            product: {
                 type: mongoose.Schema.Types.ObjectId,
                 required: true,
-                ref:'Product'
+                ref: 'Product'
             }
         }
     ],
+
     paymentInfo: {
         id: {
             type: String,
@@ -87,15 +88,15 @@ const orderSchema = mongoose.Schema({
     orderStatus: {
         type: String,
         required: true,
-        default:'Processing'
+        default: 'Processing'
     },
     deliveredAt: {
-        type:Date
+        type: Date
     },
     createdAt: {
-        type:Date,
+        type: Date,
         default: Date.now
     }
 })
 
-module.exports = mongoose.model('Order',orderSchema)
+module.exports = mongoose.model('Order', orderSchema)

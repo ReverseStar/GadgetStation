@@ -23,6 +23,7 @@ import Payment from './components/cart/Payment'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import OrderSuccess from './components/cart/OrderSuccess'
+import ListOrder from './components/order/ListOrders'
 
 
 
@@ -64,6 +65,7 @@ function App() {
           <ProtectedRoute path="/shipping" component={Shipping} />
           <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
           <ProtectedRoute path="/success" component={OrderSuccess} />
+          <ProtectedRoute path="/orders/me" component={ListOrder} exact />
 
 
 
