@@ -27,11 +27,6 @@ const ListOrder = () => {
         const data = {
             columns: [
                 {
-                    label: 'Order Name',
-                    field: 'product',
-                    sort: 'asc'
-                },
-                {
                     label: 'Order ID',
                     field: 'id',
                     sort: 'asc'
@@ -73,7 +68,6 @@ const ListOrder = () => {
                     </Link>
             })
         })
-
         return data;
     }
 
