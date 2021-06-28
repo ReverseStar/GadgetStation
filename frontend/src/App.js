@@ -26,6 +26,9 @@ import OrderSuccess from './components/cart/OrderSuccess'
 import ListOrder from './components/order/ListOrders'
 import OrderDetails from './components/order/OrderDetails'
 
+import Dashboard from './components/admin/Dashboard'
+
+
 
 
 function App() {
@@ -70,12 +73,14 @@ function App() {
           <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
 
 
+
           {stripeApiKey &&
             <Elements stripe={loadStripe(stripeApiKey)}>
               <ProtectedRoute path="/payment" component={Payment} />
             </Elements>
           }
         </div>
+          <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
 
         <Footer />
       </div>
