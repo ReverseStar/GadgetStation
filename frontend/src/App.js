@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { useSelector} from 'react-redux'
 
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
@@ -28,6 +29,7 @@ import OrderDetails from './components/order/OrderDetails'
 
 import Dashboard from './components/admin/Dashboard'
 import ProductsList from './components/admin/ProductsList'
+import NewProduct from './components/admin/NewProduct'
 
 
 
@@ -50,6 +52,8 @@ function App() {
     getStripApiKey();
 
   }, [])
+
+  const {user, loading} = useSelector(state => state.auth)
 
   return (
     <Router>
@@ -81,10 +85,16 @@ function App() {
             </Elements>
           }
         </div>
+
+          {/* Admin Access */}
           <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
           <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact />
+          <ProtectedRoute path="/admin/product" isAdmin={true} component={NewProduct} exact />
 
-        <Footer />
+
+        {!loading && user.role !== 'admin'&& (
+          <Footer />
+        )}
       </div>
     </Router>
   );
