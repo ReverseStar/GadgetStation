@@ -5,25 +5,39 @@ import MetaData from '../layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { MDBDataTable } from 'mdbreact'
-import { myOrders, clearErrors } from '../../actions/orderActions'
-import { getAdminProducts } from "../../actions/productActions"
+import { getAdminProducts, deleteProduct, clearErrors } from "../../actions/productActions"
 import Sidebar from './Sidebar'
+import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
+
 
 const ProductsList = ({ history }) => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
     const { loading, error, products } = useSelector(state => state.products)
+    const { error: deleteError, isDeleted } = useSelector(state => state.product)
 
 
     useEffect(() => {
         dispatch(getAdminProducts())
 
-        if (error) {
+        if(error) {
             alert.error(error)
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, error])
+
+        if(deleteError) {
+            alert.error(deleteError)
+            dispatch(clearErrors())
+        }
+
+        if(isDeleted) {
+            alert.success('Product Deleted Successfully')
+            history.push('/admin/products')
+        dispatch({type: DELETE_PRODUCT_RESET})
+        }
+
+    }, [dispatch, alert, error, history,isDeleted,deleteError,])
 
     const setProducts = () => {
         const data = {
@@ -61,18 +75,22 @@ const ProductsList = ({ history }) => {
                 name: product.name,
                 price: `$${product.price}`,
                 stock: product.stock,
-                actions:
-                <Fragment>
-                <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">
-                    <i className="fa fa-pencil"></i>
-                </Link>
-                <button className="btn btn-danger py-1 px-2 ml-2" >
-                    <i className="fa fa-trash"></i>
-                </button>
-            </Fragment>
+                actions: <Fragment>
+                    <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">
+                        <i className="fa fa-pencil"></i>
+                    </Link>
+                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteProductHandler(product._id)}>
+                        <i className="fa fa-trash"></i>
+                    </button>
+                </Fragment>
             })
         })
+
         return data;
+    }
+
+    const deleteProductHandler = (id) => {
+        dispatch(deleteProduct(id))
     }
 
 
@@ -90,12 +108,12 @@ const ProductsList = ({ history }) => {
 
                         {loading ? <Loader /> : (
                             <MDBDataTable
-                            data={setProducts()}
-                            className="px-3"
-                            bordered
-                            striped
-                            hover
-                        />
+                                data={setProducts()}
+                                className="px-3"
+                                bordered
+                                striped
+                                hover
+                            />
                         )}
                     </Fragment>
                 </div>
