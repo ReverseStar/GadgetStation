@@ -6,8 +6,8 @@ import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductReviews, clearErrors } from '../../actions/productActions'
-// import { DELETE_REVIEW_RESET } from '../../constants/productConstants'
+import { getProductReviews, deleteReview, clearErrors } from '../../actions/productActions'
+import { DELETE_REVIEW_RESET } from '../../constants/productConstants'
 import Search from './../layout/Search';
 
 const ProductReviews = () => {
@@ -17,7 +17,8 @@ const ProductReviews = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, reviews } = useSelector(state => state.productReviews);
+    const { loading, error, reviews } = useSelector(state => state.productReviews); 
+    const { isDeleted} = useSelector(state => state.review)
 
     useEffect(() => {
 
@@ -30,17 +31,16 @@ const ProductReviews = () => {
             dispatch(getProductReviews(productId))
         }
 
-        // if (isDeleted) {
-        //     alert.success('User Deleted Successfully');
-        //     history.push('/admin/users');
-        //     dispatch({ type: DELETE_USER_RESET })
-        // }
+        if (isDeleted) {
+            alert.success('Review Deleted Successfully');
+            dispatch({ type: DELETE_REVIEW_RESET })
+        }
 
-    }, [dispatch, alert, error, productId])
+    }, [dispatch, alert, error, productId, isDeleted])
 
-    // const deleteUserHandler = (id) => {
-    //     dispatch(deleteUser(id))
-    // }
+    const deleteReviewHandler = (id) => {
+        dispatch(deleteReview(id,productId))
+    }
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -86,7 +86,7 @@ const ProductReviews = () => {
                 user: review.name,
 
                 actions:
-                    <button className="btn btn-danger py-1 px-2 ml-2" >
+                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteReviewHandler(review._id)}>
                         <i className="fa fa-trash"></i>
                     </button>
             })
