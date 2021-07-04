@@ -10,7 +10,7 @@ const Product = ({ product, col }) => {
                     className="card-img-top mx-auto"
                     src={product.images[0].url}
                 />
-                <div className="card-body d-flex flex-column">
+                <div className="card-body d-flex flex-column align-items-center justify-content-center">
                     <h5 className="card-title">
                         <Link to={`/product/${product._id}`} >
                             {product.name}

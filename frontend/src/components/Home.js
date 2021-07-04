@@ -73,12 +73,10 @@ const Home = ({ match }) => {
                     <MetaData title={'Get Your Gadgets'} />
                     <h1 id="product_heading">Latest Products</h1>
 
-                    <section id="products" className="container mt-5">
+                    <section id="products" className="mt-5">
                         <div className="row">
-
-                            {keyword ? (
                                 <Fragment>
-                                    <div className="col-6 col-md-3 mt-5 mb-5">
+                                    <div className="col-6 col-md-2 mt-5 mb-5 mr-4">
                                         <div className="px-5">
                                             <Range
                                                 marks={{
@@ -153,17 +151,11 @@ const Home = ({ match }) => {
                                     <div className="col-6 col-md-9">
                                         <div className="row">
                                             {products.map(product => (
-                                                <Product key={product._id} product={product} col={4} />
+                                                <Product key={product._id} product={product} col={3} />
                                             ))}
                                         </div>
                                     </div>
-
                                 </Fragment>
-                            ) : (
-                                products.map(product => (
-                                    <Product key={product._id} product={product} col={3} />
-                                ))
-                            )}
                         </div>
                     </section>
 

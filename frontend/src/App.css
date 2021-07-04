@@ -614,3 +614,38 @@ ul.CTAs a {
   font-size: 0.8rem;
   color: grey;
 }
+
+
+
+
+.card-group {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+}
+
+.app-container {
+  margin: 0 100px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: rgb(60, 47, 241);
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: rgb(60, 47, 241);
+}

@@ -66,7 +66,7 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <div className="container container-fluid">
+        <div className="app-container">
           <Route path="/" component={Home} exact />
           <Route path="/search/:keyword" component={Home} />
           <Route path="/product/:id" component={ProductDetails} exact />
@@ -83,7 +83,6 @@ function App() {
           <ProtectedRoute path="/success" component={OrderSuccess} />
           <ProtectedRoute path="/orders/me" component={ListOrder} exact />
           <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
-
 
 
           {stripeApiKey &&
