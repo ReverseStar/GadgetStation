@@ -42,18 +42,19 @@ const productSchema = new mongoose.Schema({
         required: [true, 'Please select a category for this product'],
         enum: {
             values: [
+                'Select a Category',
+                'Camera and Lens',
                 'Electronics',
-                'Camera',
+                'Earphones/Earbuds',
+                'Gaming Accessories',
+                'Home Appliences',
                 'Laptop',
-                'Accessories',
-                'Headphones',
-                'Foods',
-                'Books',
-                'Cloths and Shoes',
-                'Beauty and Health',
+                'Mobile Accessories',
+                'Medical Accessories',
+                'Smartphones',
                 'Sports',
-                'Outdoor',
-                'Home'
+                'Watches',
+                'Others'
             ],
             message: 'Please select a valid category for this product'
         }
@@ -75,10 +76,10 @@ const productSchema = new mongoose.Schema({
     },
     reviews: [
         {
-            user:{
+            user: {
                 type: mongoose.Schema.ObjectId,
-                ref:'User',
-                required: true 
+                ref: 'User',
+                required: true
             },
             name: {
                 type: String,
@@ -94,10 +95,10 @@ const productSchema = new mongoose.Schema({
             }
         }
     ],
-    user:{
+    user: {
         type: mongoose.Schema.ObjectId,
-        ref:'User',
-        required: true 
+        ref: 'User',
+        required: true
     },
     createdAt: {
         type: Date,

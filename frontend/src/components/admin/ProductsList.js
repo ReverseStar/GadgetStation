@@ -73,7 +73,7 @@ const ProductsList = ({ history }) => {
             data.rows.push({
                 id: product._id,
                 name: product.name,
-                price: `$${product.price}`,
+                price: `৳ ${product.price}`,
                 stock: product.stock,
                 actions: <Fragment>
                     <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">

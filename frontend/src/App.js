@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useSelector} from 'react-redux'
 
 import Header from './components/layout/Header'
@@ -40,7 +40,6 @@ import ProductReviews from './components/admin/ProductReviews'
 
 
 
-
 function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState('')
@@ -64,6 +63,7 @@ function App() {
 
   return (
     <Router>
+      <Switch>
       <div className="App">
         <Header />
         <div className="app-container">
@@ -79,7 +79,7 @@ function App() {
           <Route path="/password/reset/:token" component={NewPassword} exact />
           <Route path="/cart" component={Cart} exact />
           <ProtectedRoute path="/shipping" component={Shipping} />
-          <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
+          <ProtectedRoute path="/order/confirm" exact component={ConfirmOrder} />
           <ProtectedRoute path="/success" component={OrderSuccess} />
           <ProtectedRoute path="/orders/me" component={ListOrder} exact />
           <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
@@ -108,6 +108,7 @@ function App() {
           <Footer />
         )}
       </div>
+      </Switch>
     </Router>
   );
 }

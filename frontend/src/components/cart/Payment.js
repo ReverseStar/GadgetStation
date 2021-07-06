@@ -155,7 +155,7 @@ const Payment = ({ history }) => {
                             type="submit"
                             className="btn btn-block py-3"
                         >
-                            You Pay {` - $${orderInfo && orderInfo.totalPrice}`}
+                            You Pay {` - ৳ ${orderInfo && orderInfo.totalPrice}`}
                         </button>
 
                     </form>

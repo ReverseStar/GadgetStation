@@ -43,10 +43,10 @@ const OrderDetails = ({ match }) => {
                             <h2 className="my-5">Order # {order._id}</h2>
 
                             <h4 className="mb-4">Shipping Info</h4>
-                            <p><b>Name:</b> {user && user.name}</p>
+                            <p><b>Name:</b> {shippingInfo && user.name}</p>
                             <p><b>Phone:</b> {shippingInfo && shippingInfo.phoneNo}</p>
                             <p className="mb-4"><b>Address:</b>{shippingDetails}</p>
-                            <p><b>Amount:</b> ${totalPrice}</p>
+                            <p><b>Amount:</b> $ {totalPrice}</p>
 
                             <hr />
 
@@ -60,7 +60,6 @@ const OrderDetails = ({ match }) => {
 
                             <h4 className="my-4">Order Items:</h4>
 
-                            <hr />
                             <div className="cart-item my-1">
                                 {orderItems && orderItems.map(item => (
                                     <div key={item.product} className="row my-5">

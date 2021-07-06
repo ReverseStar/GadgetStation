@@ -5,11 +5,11 @@ import MetaData from '../layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { MDBDataTable } from 'mdbreact'
-import { updateProduct,getProductDetails, clearErrors } from '../../actions/productActions'
+import { updateProduct, getProductDetails, clearErrors } from '../../actions/productActions'
 import Sidebar from './Sidebar'
 import { UPDATE_PRODUCT_RESET } from '../../constants/productConstants'
 
-const UpdateProduct = ({match, history}) => {
+const UpdateProduct = ({ match, history }) => {
 
     const [name, setName] = useState('')
     const [price, setPrice] = useState(0)
@@ -22,31 +22,32 @@ const UpdateProduct = ({match, history}) => {
     const [imagesPreview, setImagesPreview] = useState([])
 
     const categories = [
+        'Select a Category',
+        'Camera and Lens',
         'Electronics',
-        'Camera',
+        'Earphones/Earbuds',
+        'Gaming Accessories',
+        'Home Appliences',
         'Laptop',
-        'Accessories',
-        'Headphones',
-        'Foods',
-        'Books',
-        'Cloths and Shoes',
-        'Beauty and Health',
+        'Mobile Accessories',
+        'Medical Accessories',
+        'Smartphones',
         'Sports',
-        'Outdoor',
-        'Home'
+        'Watches',
+        'Others'
     ]
 
 
 
     const alert = useAlert();
     const dispatch = useDispatch();
-    const {error, product} = useSelector(state => state.productDetails)
+    const { error, product } = useSelector(state => state.productDetails)
     const { loading, error: updateError, isUpdated } = useSelector(state => state.product);
     const productId = match.params.id;
 
     useEffect(() => {
 
-        if(product && product._id !== productId) {
+        if (product && product._id !== productId) {
             dispatch(getProductDetails(productId))
         } else {
             setName(product.name);
@@ -69,12 +70,12 @@ const UpdateProduct = ({match, history}) => {
             dispatch({ type: UPDATE_PRODUCT_RESET })
         }
 
-        if(updateError){
-            alert.error(updateError) ;
+        if (updateError) {
+            alert.error(updateError);
             dispatch(clearErrors())
         }
 
-    }, [dispatch, alert, error, history, isUpdated, updateError, product, productId, ])
+    }, [dispatch, alert, error, history, isUpdated, updateError, product, productId,])
 
 
     const submitHandler = (e) => {
@@ -91,7 +92,7 @@ const UpdateProduct = ({match, history}) => {
             formData.append('images', image)
         })
 
-        dispatch(updateProduct(product._id,formData))
+        dispatch(updateProduct(product._id, formData))
     }
 
     const onChange = e => {
@@ -206,7 +207,7 @@ const UpdateProduct = ({match, history}) => {
                                     </div>
 
                                     {oldImages && oldImages.map(img => (
-                                        <img key={img} src={img.url} alt={img.url} className="mt-3 mr-2" width="55" height="52"/>
+                                        <img key={img} src={img.url} alt={img.url} className="mt-3 mr-2" width="55" height="52" />
                                     ))}
 
                                     {imagesPreview.map(img => (

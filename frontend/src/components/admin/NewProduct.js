@@ -21,18 +21,19 @@ const NewProduct = ({ history }) => {
     const [imagesPreview, setImagesPreview] = useState([])
 
     const categories = [
+        'Select a Category',
+        'Camera and Lens',
         'Electronics',
-        'Camera',
+        'Earphones/Earbuds',
+        'Gaming Accessories',
+        'Home Appliences',
         'Laptop',
-        'Accessories',
-        'Headphones',
-        'Foods',
-        'Books',
-        'Cloths and Shoes',
-        'Beauty and Health',
+        'Mobile Accessories',
+        'Medical Accessories',
+        'Smartphones',
         'Sports',
-        'Outdoor',
-        'Home'
+        'Watches',
+        'Others'
     ]
 
     const alert = useAlert();

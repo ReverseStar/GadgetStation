@@ -5,6 +5,7 @@ import '../../App.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useAlert } from 'react-alert'
 import { logout } from '../../actions/userActions'
+import Home from './../Home';
 
 
 const Header = () => {
@@ -24,8 +25,8 @@ const Header = () => {
             <nav className="navbar row">
                 <div className="col-12 col-md-3">
                     <div className="navbar-brand">
-                        <Link to="/">
-                            <img src="/images/logo2.png" />
+                        <Link to="/" target="blank">
+                            <img src="/images/gs-logo-resident-evil.png" />
                         </Link>
                     </div>
                 </div>
