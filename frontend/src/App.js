@@ -72,14 +72,16 @@ function App() {
           <Route path="/product/:id" component={ProductDetails} exact />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <ProtectedRoute path="/me" component={Profile} exact />
-          <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
-          <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
           <Route path="/password/forgot" component={ForgotPassword} exact />
           <Route path="/password/reset/:token" component={NewPassword} exact />
           <Route path="/cart" component={Cart} exact />
+
+
+          <ProtectedRoute path="/me" component={Profile} exact />
+          <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
+          <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
           <ProtectedRoute path="/shipping" component={Shipping} />
-          <ProtectedRoute path="/order/confirm" exact component={ConfirmOrder} />
+          <ProtectedRoute path="/confirm" component={ConfirmOrder} exact/>
           <ProtectedRoute path="/success" component={OrderSuccess} />
           <ProtectedRoute path="/orders/me" component={ListOrders} exact />
           <ProtectedRoute path="/order/:id" component={OrderDetails} exact />

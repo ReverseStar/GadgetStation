@@ -54,6 +54,8 @@ import {
     CLEAR_ERRORS
 } from '../constants/userConstants'
 
+import {CLEAR_CART} from '../constants/cartConstants'
+
 // For Login Form
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -242,6 +244,11 @@ export const logout = () => async (dispatch) => {
         dispatch({
             type: LOGOUT_SUCCESS,
             payload: data.user
+        })
+        localStorage.removeItem('cartItems') //, JSON.stringify(getState().cart.cartItems
+        dispatch({
+            type: CLEAR_CART,
+            payload: {}
         })
 
     } catch (error) {
